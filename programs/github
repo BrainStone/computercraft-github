@@ -5,14 +5,17 @@ local passed = { select(2, ...) }
 
 local subcommands = {
 	clone = {
-		usage = "github clone <user>/<repo> [-b <branchname> | -t <tagname>] [<destination>] [-a <username>]",
+		usage = "github clone <user>/<repo> [-r ref] [<destination>] [-a <username>]",
 		flags = {
-			['-b'] = 'branch',
-			['--branch'] = 'branch',
-			['-t'] = 'tag',
-			['--tag'] = 'tag',
+			['-r'] = 'ref',
+			['--ref'] = 'ref',
 			['-a'] = 'authed',
-			['-auth'] = 'authed'
+			['-auth'] = 'authed',
+			-- Deprecated but keeping backwards compat
+			['-b'] = 'ref',
+			['--branch'] = 'ref',
+			['-t'] = 'ref',
+			['--tag'] = 'ref',
 		}
 	},
 	auth = {
@@ -119,7 +122,7 @@ end
 if action == subcommands.clone then
 	-- parse input
 	local repo, dest = args[1], args[2]
-	local treeName = flags.branch or flags.tag or 'master'
+	local treeName = flags.ref or 'master'
 
 	if not repo then return printError("No repo specified") end
 

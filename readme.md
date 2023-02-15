@@ -15,9 +15,9 @@ Usage
 -----
 
 ### Cloning a repo
-    github clone <user>/<repo> [-b <branchname> | -t <tagname>] [<destination>] [-a <username>]
+    github clone <user>/<repo> [-r <ref>] [<destination>] [-a <username>]
 
-The branch and tag arguments are optional, and default to 'master'.  You may only specify a branch or tag, you may not specify both.
+The ref argument is optional, and default to 'master'. You can use it to specify branches, tags or commit SHAs.
 
 The destination folder is optional, and defaults to the current folder name. Watch out - this script will happily overwrite any existing files!
 
